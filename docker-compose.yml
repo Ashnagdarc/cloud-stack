@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"        # Ollama API
+    volumes:
+      - ./data/ollama:/root/.ollama
+
+  wg-easy:
+    image: weejewel/wg-easy
+    container_name: wg-easy
+    restart: unless-stopped
+    environment:
+      - WG_HOST=${WG_HOST}
+      - PASSWORD=${WG_PASSWORD}
+      - WG_PORT=51820
+    volumes:
+      - ./data/wireguard:/etc/wireguard
+    ports:
+      - "51820:51820/udp"    # WireGuard VPN
+      - "51821:51821/tcp"    # Web UI for managing peers
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv4.conf.all.src_valid_mark=1
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:latest
+    container_name: open-webui
+    restart: unless-stopped
+    ports:
+      - "3000:8080"
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    depends_on:
+      - ollama
