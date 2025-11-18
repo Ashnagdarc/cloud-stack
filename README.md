@@ -40,8 +40,10 @@ Easily create and manage VPN clients through a GUI:
 
 🚀 One-Line Installation
 
-Deploy everything with a single command: bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/YOUR_REPO/main/install.sh)
-Supports environment variables for quick setup: WG_HOST="your-server-ip" WG_PASSWORD="StrongPassword" bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/YOUR_REPO/main/install.sh)
+Deploy everything with a single command: bash <curl -fsSL https://raw.githubusercontent.com/Ashnagdarc/cloud-stack/master/docker-compose.yml \
+    -o docker-compose.yml
+Supports environment variables for quick setup: WG_HOST="your-server-ip" WG_PASSWORD="StrongPassword" bash < curl -fsSL https://raw.githubusercontent.com/Ashnagdarc/cloud-stack/master/docker-compose.yml \
+    -o docker-compose.yml
 
 Use Cases
 	•	AI-powered automations (n8n, Zapier, custom apps)
