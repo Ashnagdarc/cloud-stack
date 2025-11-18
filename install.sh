@@ -32,7 +32,7 @@ cd /opt/cloud-stack
 
 # If docker-compose.yml not present, fetch it from your repo
 if [ ! -f docker-compose.yml ]; then
-  curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/YOUR_REPO/main/docker-compose.yml \
+  curl -fsSL https://raw.githubusercontent.com/Ashnagdarc/cloud-stack/master/docker-compose.yml \
     -o docker-compose.yml
 fi
 
